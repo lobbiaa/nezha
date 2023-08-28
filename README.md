@@ -18,22 +18,23 @@
 
 
 ## User Guide
-获取 Github/Jihulab 的 Client ID 和密钥
-哪吒监控接入 Github、Gitlab、Jihulab、Gitee 作为后台管理员账号
+获取 Github/Jihulab 的 Client ID 和密钥 <br>
+哪吒监控接入 Github、Gitlab、Jihulab、Gitee 作为后台管理员账号 <br>
 
 首先我们需要新建一个验证应用，以 Github 为例，登录 Github 后，打开 https://github.com/settings/developers ，依次选择“OAuth Apps” - “New OAuth App”
 Application name - 随意填写
-Homepage URL - 填写面板的访问域名，如："http://cdn.example.com"
+Homepage URL - 填写面板的访问域名，如："http://cdn.example.com" <br>
 Authorization callback URL - 填写回调地址，如："http://cdn.example.com/oauth2/callback"
-点击 “Register application”
+点击 “Register application” <br>
 保存页面中的 Client ID，然后点击 “Generate a new client secret“，创建一个新的 Client Secret，新建的密钥仅会显示一次，请妥善保存
-
+<br>
 JihuLab 的应用创建入口为：https://jihulab.com/-/profile/applications
 Redirect URL 中应填入回调地址
 在下方范围中勾选 read_user 和 read_api
 创建完成后，保存好应用程序 ID 和密码
 在服务器中安装 Dashboard
 在面板服务器中，运行安装脚本：
+
 bash
 curl -L https://raw.githubusercontent.com/lobbiaa/nezha/master/script/install.sh  -o nezha.sh && chmod +x nezha.sh && sudo ./nezha.sh
 
@@ -45,12 +46,12 @@ Client Secret - 之前保存的密钥
 站点标题 - 自定义站点标题
 访问端口 - 公开访问端口，可自定义，默认 8008
 Agent的通信端口 - Agent与Dashboard的通信端口，默认 5555
-
+<br>
 输入完成后，等待拉取镜像
 安装结束后，如果一切正常，此时你可以访问域名+端口号，如 “http://cdn.example.com:8008” 来查看面板
-
+<br>
 将来如果需要再次运行脚本，可以运行：
-
+<br>
 bash
 ./nezha.sh
 来打开管理脚本
