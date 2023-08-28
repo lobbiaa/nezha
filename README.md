@@ -2,7 +2,7 @@
   <br>
   <img width="360" style="max-width:80%" src="resource/static/brand.svg" title="哪吒监控 Nezha Monitoring">
   <br>
-  <small><i>LOGO designed by <a href="https://xio.ng" target="_blank">熊大</a> .</i></small>
+  <small><i>LOGO not designed by me .</i></small>
   <br><br>
 <img src="https://img.shields.io/github/actions/workflow/status/naiba/nezha/dashboard.yml?branch=master&label=Dash%20v0.15.1&logo=github&style=for-the-badge">&nbsp;<img src="https://img.shields.io/github/v/release/nezhahq/agent?color=brightgreen&label=Agent&style=for-the-badge&logo=github">&nbsp;<img src="https://img.shields.io/github/actions/workflow/status/nezhahq/agent/agent.yml?branch=v0.15.4&label=Agent%20CI&logo=github&style=for-the-badge">&nbsp;<img src="https://img.shields.io/badge/Installer-v0.15.0-brightgreen?style=for-the-badge&logo=linux">
   <br>
@@ -15,11 +15,45 @@
 
 \>> [Use Cases | 我们的用户](https://www.google.com/search?q=%22powered+by+Nezha+Monitoring%22+OR+%22powered+by+%E5%93%AA%E5%90%92%E7%9B%91%E6%8E%A7%22) (Google)  
 
-\>> **欢迎正在使用本项目且想要改进的 UI 设计师、Web 前端工程师、Go 工程师 联系 hi#nai.ba 一起参与下个版本贡献。**
 
-\>> **Welcome UI designers, Web front-end engineers, and Go engineers who are using this project and want to improve it contact hi#nai.ba and contribute to THE NEXT VERSION together.**
 
 ## User Guide
+获取 Github/Jihulab 的 Client ID 和密钥
+哪吒监控接入 Github、Gitlab、Jihulab、Gitee 作为后台管理员账号
+
+首先我们需要新建一个验证应用，以 Github 为例，登录 Github 后，打开 https://github.com/settings/developers ，依次选择“OAuth Apps” - “New OAuth App”
+Application name - 随意填写
+Homepage URL - 填写面板的访问域名，如："http://cdn.example.com"
+Authorization callback URL - 填写回调地址，如："http://cdn.example.com/oauth2/callback"
+点击 “Register application”
+保存页面中的 Client ID，然后点击 “Generate a new client secret“，创建一个新的 Client Secret，新建的密钥仅会显示一次，请妥善保存
+
+JihuLab 的应用创建入口为：https://jihulab.com/-/profile/applications
+Redirect URL 中应填入回调地址
+在下方范围中勾选 read_user 和 read_api
+创建完成后，保存好应用程序 ID 和密码
+在服务器中安装 Dashboard
+在面板服务器中，运行安装脚本：
+bash
+curl -L https://raw.githubusercontent.com/lobbiaa/nezha/master/script/install.sh  -o nezha.sh && chmod +x nezha.sh && sudo ./nezha.sh
+
+等待Docker安装完毕后，分别输入以下值：
+OAuth提供商 - Github，Gitlab，Jihulab，Gitee 中选择一个
+Client ID - 之前保存的 Client ID
+Client Secret - 之前保存的密钥
+用户名 - OAuth 提供商中的用户名
+站点标题 - 自定义站点标题
+访问端口 - 公开访问端口，可自定义，默认 8008
+Agent的通信端口 - Agent与Dashboard的通信端口，默认 5555
+
+输入完成后，等待拉取镜像
+安装结束后，如果一切正常，此时你可以访问域名+端口号，如 “http://cdn.example.com:8008” 来查看面板
+
+将来如果需要再次运行脚本，可以运行：
+
+bash
+./nezha.sh
+来打开管理脚本
 
 - [English](https://nezhahq.github.io/en_US/index.html)
 - [中文文档](https://nezhahq.github.io/index.html)
@@ -32,116 +66,3 @@
 | <div align="center"><b>Default modified <a href="https://ww.ws/43.html">[Guide]</a></b></div> | <div align="center"><b>Neko Mdui <a href="https://github.com/MikoyChinese">@MikoyChinese</a></b></div> |      <div align="center"><b>AngelKanade <a href="https://github.com/adminsama">@adminsama</a></b></div>         |
 | ![默认主题魔改](https://fastly.jsdelivr.net/gh/idarku/img@main/me/1631120192341.webp)       | ![Neko Mdui](resource/template/theme-mdui/screenshot.png)                                              |        ![AngelKanade](resource/template/theme-angel-kanade/screenshot.png)            |
 
-## Supported Languages
-
-- English
-- 中文
-- Español
-
-You can change the dashboard language in the settings page (`/setting`) after the dashboard is installed.
-
-## Contributors
-
-<!--GAMFC_DELIMITER--><a href="https://github.com/naiba" title="naiba">
-  <img src="https://avatars.githubusercontent.com/u/29243953?v=4" width="50;" alt="naiba"/>
-</a>
-<a href="https://github.com/AkkiaS7" title="Akkia">
-  <img src="https://avatars.githubusercontent.com/u/68485070?v=4" width="50;" alt="Akkia"/>
-</a>
-<a href="https://github.com/Erope" title="卖女孩的小火柴">
-  <img src="https://avatars.githubusercontent.com/u/44471469?v=4" width="50;" alt="卖女孩的小火柴"/>
-</a>
-<a href="https://github.com/dysf888" title="黑歌">
-  <img src="https://avatars.githubusercontent.com/u/47450409?v=4" width="50;" alt="黑歌"/>
-</a>
-<a href="https://github.com/MikoyChinese" title="MikoyChinese">
-  <img src="https://avatars.githubusercontent.com/u/22676744?v=4" width="50;" alt="MikoyChinese"/>
-</a>
-<a href="https://github.com/JackieSung4ev" title="JackieSung4ev">
-  <img src="https://avatars.githubusercontent.com/u/24974735?v=4" width="50;" alt="JackieSung4ev"/>
-</a>
-<a href="https://github.com/ilay1678" title="我若为王">
-  <img src="https://avatars.githubusercontent.com/u/7021399?v=4" width="50;" alt="我若为王"/>
-</a>
-<a href="https://github.com/lemoeo" title="Lemoe">
-  <img src="https://avatars.githubusercontent.com/u/18618627?v=4" width="50;" alt="Lemoe"/>
-</a>
-<a href="https://github.com/CosmosZ-code" title="CosmosZ-code">
-  <img src="https://avatars.githubusercontent.com/u/81398224?v=4" width="50;" alt="CosmosZ-code"/>
-</a>
-<a href="https://github.com/liuyanxi975" title="刘颜溪">
-  <img src="https://avatars.githubusercontent.com/u/24417037?v=4" width="50;" alt="刘颜溪"/>
-</a>
-<a href="https://github.com/cantoblanco" title="Kris">
-  <img src="https://avatars.githubusercontent.com/u/116849421?v=4" width="50;" alt="Kris"/>
-</a>
-<a href="https://github.com/hhhkkk520" title="Kris">
-  <img src="https://avatars.githubusercontent.com/u/52115472?v=4" width="50;" alt="Kris"/>
-</a>
-<a href="https://github.com/spiritLHLS" title="spiritlhl">
-  <img src="https://avatars.githubusercontent.com/u/103393591?v=4" width="50;" alt="spiritlhl"/>
-</a>
-<a href="https://github.com/rootmelo92118" title="rootmelo92118">
-  <img src="https://avatars.githubusercontent.com/u/32770959?v=4" width="50;" alt="rootmelo92118"/>
-</a>
-<a href="https://github.com/1ridic" title="iridiumR">
-  <img src="https://avatars.githubusercontent.com/u/88495501?v=4" width="50;" alt="iridiumR"/>
-</a>
-<a href="https://github.com/coreff" title="Core F">
-  <img src="https://avatars.githubusercontent.com/u/38347122?v=4" width="50;" alt="Core F"/>
-</a>
-<a href="https://github.com/Creling" title="Creling">
-  <img src="https://avatars.githubusercontent.com/u/43109504?v=4" width="50;" alt="Creling"/>
-</a>
-<a href="https://github.com/ch8o" title="no-name-now">
-  <img src="https://avatars.githubusercontent.com/u/9103372?v=4" width="50;" alt="no-name-now"/>
-</a>
-<a href="https://github.com/iilemon" title="Sean">
-  <img src="https://avatars.githubusercontent.com/u/33201711?v=4" width="50;" alt="Sean"/>
-</a>
-<a href="https://github.com/Es-dese" title="Esdese">
-  <img src="https://avatars.githubusercontent.com/u/71542548?v=4" width="50;" alt="Esdese"/>
-</a>
-<a href="https://github.com/GreenTeodoro839" title="GreenTeodoro839">
-  <img src="https://avatars.githubusercontent.com/u/77104800?v=4" width="50;" alt="GreenTeodoro839"/>
-</a>
-<a href="https://github.com/techotaku" title="Ian Li">
-  <img src="https://avatars.githubusercontent.com/u/1948179?v=4" width="50;" alt="Ian Li"/>
-</a>
-<a href="https://github.com/KorenKrita" title="KorenKrita">
-  <img src="https://avatars.githubusercontent.com/u/22239339?v=4" width="50;" alt="KorenKrita"/>
-</a>
-<a href="https://github.com/MartijnLindeman" title="Martijn Lindeman">
-  <img src="https://avatars.githubusercontent.com/u/78365708?v=4" width="50;" alt="Martijn Lindeman"/>
-</a>
-<a href="https://github.com/nickfox-taterli" title="Tater Li">
-  <img src="https://avatars.githubusercontent.com/u/19658596?v=4" width="50;" alt="Tater Li"/>
-</a>
-<a href="https://github.com/hmsjy2017" title="Tony">
-  <img src="https://avatars.githubusercontent.com/u/42692274?v=4" width="50;" alt="Tony"/>
-</a>
-<a href="https://github.com/adminsama" title="adminsama">
-  <img src="https://avatars.githubusercontent.com/u/60880076?v=4" width="50;" alt="adminsama"/>
-</a>
-<a href="https://github.com/acgpiano" title="Acgpiano">
-  <img src="https://avatars.githubusercontent.com/u/15900800?v=4" width="50;" alt="Acgpiano"/>
-</a>
-<a href="https://github.com/fscarmen" title="fscarmen">
-  <img src="https://avatars.githubusercontent.com/u/62703343?v=4" width="50;" alt="fscarmen"/>
-</a>
-<a href="https://github.com/guoyongchang" title="guoyongchang">
-  <img src="https://avatars.githubusercontent.com/u/10484506?v=4" width="50;" alt="guoyongchang"/>
-</a>
-<a href="https://github.com/yuanweize" title="I">
-  <img src="https://avatars.githubusercontent.com/u/30067203?v=4" width="50;" alt="I"/>
-</a>
-<a href="https://github.com/ysicing" title="缘生">
-  <img src="https://avatars.githubusercontent.com/u/8605565?v=4" width="50;" alt="缘生"/>
-</a>
-<a href="https://github.com/colour93" title="玖叁">
-  <img src="https://avatars.githubusercontent.com/u/64313711?v=4" width="50;" alt="玖叁"/>
-</a><!--GAMFC_DELIMITER_END-->
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=naiba/nezha&type=Timeline)](https://star-history.com/#naiba/nezha&Timeline)
