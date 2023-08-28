@@ -15,7 +15,7 @@
             <div v-for="server in group.data" :id="server.ID" class="ui card">
               <div class="content" v-if="server.Host" style="margin-top: 10px; padding-bottom: 5px">
                 <div class="header">
-                  <i :class="server.Host.CountryCode + ' flag'"></i>&nbsp;<i v-if='server.Host.Platform == "darwin"'
+                <i :class="server.Host.CountryCode + ' flag'"></i>&nbsp;<i v-if='server.Host.Platform == "darwin"'
                     class="apple icon"></i><i v-else-if='isWindowsPlatform(server.Host.Platform)'
                     class="windows icon"></i><i v-else :class="'fl-' + getFontLogoClass(server.Host.Platform)"></i>
                   @#server.Name + (server.live?'':'[{{tr "Offline"}}]')#@
@@ -72,13 +72,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="three wide column">{{tr "NetSpeed"}}</div>
-                    <div class="thirteen wide column">
-                      <i class="arrow alternate circle down outline icon"></i>
-                      @#formatByteSize(server.State.NetInSpeed)#@/s
-                      <i class="arrow alternate circle up outline icon"></i>
-                      @#formatByteSize(server.State.NetOutSpeed)#@/s
-                    </div>
                     <div class="three wide column">{{tr "DiskUsed"}}</div>
                     <div class="thirteen wide column">
                       <div :class="formatPercent(server.live,server.State.DiskUsed, server.Host.DiskTotal).class">
@@ -87,6 +80,29 @@
                           <small>@#parseInt(server.State?server.State.DiskUsed/server.Host.DiskTotal*100:0)#@%</small>
                         </div>
                       </div>
+                    </div>
+                    <div class="three wide column">{{tr "NetSpeed"}}</div>
+                    <div class="thirteen wide column">
+                      <i class="arrow alternate circle down outline icon"></i>
+                      @#formatByteSize(server.State.NetInSpeed)#@/s
+                      <i class="arrow alternate circle up outline icon"></i>
+                      @#formatByteSize(server.State.NetOutSpeed)#@/s
+                    </div>
+                    <div class="three wide column">流量</div>
+                    <div class="thirteen wide column">
+                      <i class="arrow circle down icon"></i>
+                      @#formatByteSize(server.State.NetInTransfer)#@
+                      &nbsp;
+                      <i class="arrow circle up icon"></i>
+                      @#formatByteSize(server.State.NetOutTransfer)#@
+                    </div>
+                    <div class="three wide column">信息</div>
+                    <div class="thirteen wide column">
+                      <i class="bi bi-cpu-fill" style="font-size: 1.1rem; color: #4a86e8;"></i> @#getCoreAndGHz(server.Host.CPU)#@
+                      &nbsp;
+                      <i class="bi bi-memory" style="font-size: 1.1rem; color: #00ac0d;"></i> @#getK2Gb(server.Host.MemTotal)#@
+                      &nbsp;
+                      <i class="bi bi-hdd-rack-fill" style="font-size: 1.1rem; color: #980000"></i> @#getK2Gb(server.Host.DiskTotal)#@
                     </div>
                     <div class="three wide column">{{tr "Uptime"}}</div>
                     <div class="thirteen wide column">
@@ -240,6 +256,34 @@
       formatByteSize(bs) {
         const x = readableBytes(bs)
         return x != "NaN undefined" ? x : '0B'
+      },
+      getCoreAndGHz(str){
+        if((str || []).hasOwnProperty(0) === false){
+            return '';
+        }
+        str = str[0];
+	    let GHz = str.match(/(\d|\.)+GHz/g);
+	    let Core = str.match(/(\d|\.)+ Physical/g);
+	    GHz = GHz!==null?GHz.hasOwnProperty(0)===false?'':GHz[0]:''
+	    Core = Core!==null?Core.hasOwnProperty(0)===false?'?':Core[0]:'?'
+	    if(Core === '?'){
+	        let Core = str.match(/(\d|\.)+ Virtual/g);
+	        Core = Core!==null?Core.hasOwnProperty(0)===false?'?':Core[0]:'?'
+	        return Core.replace('Virtual','Core')
+	    }
+	    return Core.replace('Physical','Core');
+	   
+      },
+      getK2Gb(bs){
+          bs = bs / 1024 /1024 /1024;
+          return Math.ceil(bs.toFixed(2)) + 'GB';
+      },
+      listTipsMouseenter(obj,strs,tipsNum=1){
+          this.layerIndex = layer.tips(strs, '#'+obj,{tips: [tipsNum, 'rgb(0 0 0 / 85%)'],time:0});
+          $('#'+obj).attr('layerIndex',this.layerIndex)
+      },
+      listTipsMouseleave(obj){
+          layer.close(this.layerIndex)
       }
     }
   })
