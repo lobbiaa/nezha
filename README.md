@@ -2,9 +2,8 @@
   <br>
   <img width="360" style="max-width:80%" src="resource/static/brand.svg" title="哪吒监控 Nezha Monitoring">
   <br>
-  <small><i>LOGO not designed by me .</i></small>
+  <small><i> not designed by me .</i></small>
   <br><br>
-<img src="https://img.shields.io/github/actions/workflow/status/naiba/nezha/dashboard.yml?branch=master&label=Dash%20v0.15.1&logo=github&style=for-the-badge">&nbsp;<img src="https://img.shields.io/github/v/release/nezhahq/agent?color=brightgreen&label=Agent&style=for-the-badge&logo=github">&nbsp;<img src="https://img.shields.io/github/actions/workflow/status/nezhahq/agent/agent.yml?branch=v0.15.4&label=Agent%20CI&logo=github&style=for-the-badge">&nbsp;<img src="https://img.shields.io/badge/Installer-v0.15.0-brightgreen?style=for-the-badge&logo=linux">
   <br>
   <br>
   <p>:trollface: <b>Nezha Monitoring: Self-hostable, lightweight, servers and websites monitoring and O&M tool.</b></p>
@@ -28,7 +27,6 @@ Authorization callback URL - 填写回调地址，如："http://cdn.example.com/
 点击 “Register application” <br>
 保存页面中的 Client ID，然后点击 “Generate a new client secret“，创建一个新的 Client Secret，新建的密钥仅会显示一次，请妥善保存
 <br>
-JihuLab 的应用创建入口为：https://jihulab.com/-/profile/applications
 Redirect URL 中应填入回调地址
 在下方范围中勾选 read_user 和 read_api
 创建完成后，保存好应用程序 ID 和密码
