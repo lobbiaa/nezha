@@ -22,7 +22,14 @@ function readableBytes(bytes) {
     sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
   return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + sizes[i];
 }
-
+function readableBits(bytes) {
+  if (!bytes) {
+    return '0b'
+  }
+  var i = Math.floor(Math.log((bytes * 8)) / Math.log(1000)),
+    sizes = ["b", "Kb", "Mb", "Gb", "Tb", "Pb", "Eb", "Zb", "Yb"];
+  return parseFloat(((bytes * 8) / Math.pow(1000, i)).toFixed(2)) + sizes[i];
+}
 const confirmBtn = $(".mini.confirm.modal .nezha-primary-btn.button");
 
 function showConfirm(title, content, callFn, extData) {
