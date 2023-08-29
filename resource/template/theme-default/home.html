@@ -84,9 +84,9 @@
                     <div class="three wide column">{{tr "NetSpeed"}}</div>
                     <div class="thirteen wide column">
                       <i class="arrow alternate circle down outline icon"></i>
-                      @#formatByteSize(server.State.NetInSpeed)#@/s
+                      @#formatBitSize(server.State.NetInSpeed)#@/s
                       <i class="arrow alternate circle up outline icon"></i>
-                      @#formatByteSize(server.State.NetOutSpeed)#@/s
+                      @#formatBitSize(server.State.NetOutSpeed)#@/s
                     </div>
                     <div class="three wide column">流量</div>
                     <div class="thirteen wide column">
@@ -256,6 +256,10 @@
       formatByteSize(bs) {
         const x = readableBytes(bs)
         return x != "NaN undefined" ? x : '0B'
+      },
+      formatBitSize(bs) {
+        const y = readableBytes(bs)
+        return y != "NaN undefined" ? y : '0b'
       },
       getCoreAndGHz(str){
         if((str || []).hasOwnProperty(0) === false){
