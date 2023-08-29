@@ -258,7 +258,7 @@
         return x != "NaN undefined" ? x : '0B'
       },
       formatBitSize(bs) {
-        const y = readableBytes(bs)
+        const y = readableBits(bs)
         return y != "NaN undefined" ? y : '0b'
       },
       getCoreAndGHz(str){
